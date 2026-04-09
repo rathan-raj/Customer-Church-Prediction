@@ -14,30 +14,35 @@ from preprocess import clean_data, encode_features, split_and_scale
 
 
 def _sample_df():
-    """Return a minimal churn dataframe for testing."""
+    """Return a minimal churn dataframe for testing.
+
+    Needs at least 2 rows per Churn class so stratified train/test split works.
+    """
     return pd.DataFrame({
-        "customerID": ["1", "2", "3", "4", "5"],
-        "gender": ["Male", "Female", "Male", "Female", "Male"],
-        "SeniorCitizen": [0, 1, 0, 0, 1],
-        "Partner": ["Yes", "No", "Yes", "No", "Yes"],
-        "Dependents": ["No", "No", "Yes", "No", "No"],
-        "tenure": [1, 12, 24, 36, 5],
-        "PhoneService": ["Yes", "Yes", "No", "Yes", "Yes"],
-        "MultipleLines": ["No", "Yes", "No phone service", "No", "Yes"],
-        "InternetService": ["DSL", "Fiber optic", "DSL", "No", "Fiber optic"],
-        "OnlineSecurity": ["No", "Yes", "No", "No internet service", "No"],
-        "OnlineBackup": ["Yes", "No", "Yes", "No internet service", "No"],
-        "DeviceProtection": ["No", "Yes", "No", "No internet service", "No"],
-        "TechSupport": ["No", "No", "No", "No internet service", "No"],
-        "StreamingTV": ["No", "Yes", "No", "No internet service", "Yes"],
-        "StreamingMovies": ["No", "No", "No", "No internet service", "Yes"],
-        "Contract": ["Month-to-month", "One year", "Two year", "Month-to-month", "Month-to-month"],
-        "PaperlessBilling": ["Yes", "No", "No", "Yes", "Yes"],
+        "customerID": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        "gender": ["Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female"],
+        "SeniorCitizen": [0, 1, 0, 0, 1, 0, 1, 0, 0, 1],
+        "Partner": ["Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"],
+        "Dependents": ["No", "No", "Yes", "No", "No", "Yes", "No", "No", "Yes", "No"],
+        "tenure": [1, 12, 24, 36, 5, 48, 2, 60, 8, 18],
+        "PhoneService": ["Yes", "Yes", "No", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes"],
+        "MultipleLines": ["No", "Yes", "No phone service", "No", "Yes", "Yes", "No phone service", "No", "Yes", "No"],
+        "InternetService": ["DSL", "Fiber optic", "DSL", "No", "Fiber optic", "DSL", "Fiber optic", "No", "DSL", "Fiber optic"],
+        "OnlineSecurity": ["No", "Yes", "No", "No internet service", "No", "Yes", "No", "No internet service", "Yes", "No"],
+        "OnlineBackup": ["Yes", "No", "Yes", "No internet service", "No", "Yes", "No", "No internet service", "No", "Yes"],
+        "DeviceProtection": ["No", "Yes", "No", "No internet service", "No", "No", "Yes", "No internet service", "No", "Yes"],
+        "TechSupport": ["No", "No", "No", "No internet service", "No", "Yes", "No", "No internet service", "No", "No"],
+        "StreamingTV": ["No", "Yes", "No", "No internet service", "Yes", "No", "Yes", "No internet service", "No", "Yes"],
+        "StreamingMovies": ["No", "No", "No", "No internet service", "Yes", "No", "No", "No internet service", "Yes", "No"],
+        "Contract": ["Month-to-month", "One year", "Two year", "Month-to-month", "Month-to-month",
+                     "One year", "Month-to-month", "Two year", "Month-to-month", "One year"],
+        "PaperlessBilling": ["Yes", "No", "No", "Yes", "Yes", "No", "Yes", "No", "Yes", "No"],
         "PaymentMethod": ["Electronic check", "Mailed check", "Bank transfer (automatic)",
-                          "Credit card (automatic)", "Electronic check"],
-        "MonthlyCharges": [29.85, 56.95, 53.85, 42.30, 70.70],
-        "TotalCharges": ["29.85", "680.35", "1397.47", " ", "151.65"],
-        "Churn": ["No", "No", "No", "No", "Yes"],
+                          "Credit card (automatic)", "Electronic check", "Mailed check",
+                          "Electronic check", "Bank transfer (automatic)", "Credit card (automatic)", "Mailed check"],
+        "MonthlyCharges": [29.85, 56.95, 53.85, 42.30, 70.70, 49.95, 85.10, 20.05, 65.60, 55.00],
+        "TotalCharges": ["29.85", "680.35", "1397.47", " ", "151.65", "2397.55", "170.20", "1203.00", "524.80", "990.00"],
+        "Churn": ["No", "No", "No", "No", "Yes", "No", "Yes", "No", "Yes", "No"],
     })
 
 
