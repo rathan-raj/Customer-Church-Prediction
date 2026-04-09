@@ -11,8 +11,8 @@ import pandas as pd
 from preprocess import clean_data, encode_features
 
 
-def load_model(model_path: str = "../models/best_model.pkl",
-               scaler_path: str = "../models/scaler.pkl"):
+def load_model(model_path: str = "models/best_model.pkl",
+               scaler_path: str = "models/scaler.pkl"):
     model = joblib.load(model_path)
     scaler = joblib.load(scaler_path)
     print("✅ Model and scaler loaded.")
