@@ -34,7 +34,7 @@ def get_models():
     return {
         "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
         "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
-        "XGBoost": XGBClassifier(use_label_encoder=False, eval_metric="logloss", random_state=42),
+        "XGBoost": XGBClassifier(eval_metric="logloss", random_state=42),
     }
 
 
@@ -60,7 +60,7 @@ def evaluate_model(name, model, X_test, y_test):
     }
 
 
-def train(data_path: str = "../data/WA_Fn-UseC_-Telco-Customer-Churn.csv"):
+def train(data_path: str = "WA_Fn-UseC_-Telco-Customer-Churn.csv"):
     # Load & preprocess
     df = load_data(data_path)
     df = clean_data(df)
@@ -85,9 +85,9 @@ def train(data_path: str = "../data/WA_Fn-UseC_-Telco-Customer-Churn.csv"):
     print(f"\n✅ Best Model: {best['name']} (ROC-AUC: {best['roc_auc']:.4f})")
 
     # Save best model and scaler
-    os.makedirs("../models", exist_ok=True)
-    joblib.dump(best["model"], "../models/best_model.pkl")
-    joblib.dump(scaler, "../models/scaler.pkl")
+    os.makedirs("models", exist_ok=True)
+    joblib.dump(best["model"], "models/best_model.pkl")
+    joblib.dump(scaler, "models/scaler.pkl")
     print("💾 Saved best model to models/best_model.pkl")
 
 
